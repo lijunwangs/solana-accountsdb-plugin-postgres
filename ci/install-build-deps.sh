@@ -8,6 +8,6 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 sudo apt-get update
 sudo apt-get install -y postgresql-14
 
-sudo -u posgres /etc/init.d/postgresql start
+sudo -u postgres /etc/init.d/postgresql start
 sudo -u postgres psql --command "CREATE USER solana WITH SUPERUSER PASSWORD 'solana';"
 sudo -u postgres createdb -O solana solana
