@@ -37,12 +37,6 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: |
-          ~/.cargo/bin/rustfilt
-        key: cargo-bpf-bins-${{ runner.os }}
-
-    - uses: actions/cache@v2
-      with:
-        path: |
           ~/.cache
         key: solana-${{ env.SOLANA_VERSION }}
 
