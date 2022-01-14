@@ -15,7 +15,7 @@ jobs:
       run: |
         sudo sed -i 's/soft nofile 65536/soft nofile 1048576/g' /etc/security/limits.conf
         sudo sed -i 's/hard nofile 65536/hard nofile 1048576/g' /etc/security/limits.conf
-        cat /etc/security/limits.conf
+        #cat /etc/security/limits.conf
         ulimit -n 500000
 
     - uses: actions/checkout@v2
