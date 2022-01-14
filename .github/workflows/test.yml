@@ -65,11 +65,12 @@ jobs:
         command: clippy
         args: --workspace --all-targets -- --deny=warnings
 
-    # - name: Set Limits
-    #   run: |
-    #     echo "*                hard    nofile         1048576" | sudo tee -a /etc/security/limits.conf
-    #     cat  /etc/security/limits.conf
-    #     ulimit -n 500000
+    - name: Set Limits
+      run: |
+        echo "*                hard    nofile         1048576" | sudo tee -a /etc/security/limits.conf
+        echo "*                soft    nofile         1048576" | sudo tee -a /etc/security/limits.conf
+        cat  /etc/security/limits.conf
+        ulimit -n 500000
 
     - name: Build
       run: ./ci/cargo-build-test.sh
