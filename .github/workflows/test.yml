@@ -65,6 +65,9 @@ jobs:
         command: clippy
         args: --workspace --all-targets -- --deny=warnings
 
+    - name: Set Limits
+      run: sudo echo "*                hard    nofile         1048576" >> /etc/security/limits.conf
+
     - name: Build
       run: ./ci/cargo-build-test.sh
 
