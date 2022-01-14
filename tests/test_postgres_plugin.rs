@@ -177,6 +177,7 @@ fn setup_snapshot_validator_config(
         accounts_db_caching_enabled: true,
         accounts_hash_interval_slots: snapshot_interval_slots,
         accountsdb_plugin_config_files,
+        enforce_ulimit_nofile: false,
         ..ValidatorConfig::default()
     };
 
