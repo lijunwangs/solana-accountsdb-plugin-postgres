@@ -192,8 +192,12 @@ fn setup_snapshot_validator_config(
 
 fn test_local_cluster_start_and_exit_with_config(socket_addr_space: SocketAddrSpace) {
     const NUM_NODES: usize = 1;
+    let config = ValidatorConfig {
+        enforce_ulimit_nofile: false,
+        ..ValidatorConfig::default()
+    };
     let mut config = ClusterConfig {
-        validator_configs: make_identical_validator_configs(&ValidatorConfig::default(), NUM_NODES),
+        validator_configs: make_identical_validator_configs(&config, NUM_NODES),
         node_stakes: vec![3; NUM_NODES],
         cluster_lamports: 100,
         ticks_per_slot: 8,

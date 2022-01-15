@@ -11,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set Limits
-      run: |
-        ulimit -a
-        sudo sed -i 's/soft nofile 65536/soft nofile 1048576/g' /etc/security/limits.conf
-        sudo sed -i 's/hard nofile 65536/hard nofile 1048576/g' /etc/security/limits.conf
-        #cat /etc/pam.d/common-session
-        #cat /etc/security/limits.conf
-        sudo prlimit --nofile=500000 --pid $$
-        ulimit -a
-        ulimit -n 500000
+    # - name: Set Limits
+    #   run: |
+    #     ulimit -a
+    #     sudo sed -i 's/soft nofile 65536/soft nofile 1048576/g' /etc/security/limits.conf
+    #     sudo sed -i 's/hard nofile 65536/hard nofile 1048576/g' /etc/security/limits.conf
+    #     #cat /etc/pam.d/common-session
+    #     #cat /etc/security/limits.conf
+    #     sudo prlimit --nofile=500000 --pid $$
+    #     ulimit -a
+    #     ulimit -n 500000
 
     - uses: actions/checkout@v2
 
