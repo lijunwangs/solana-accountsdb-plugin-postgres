@@ -39,7 +39,7 @@ use {
     },
     solana_streamer::socket::SocketAddrSpace,
     std::{
-        fs::File,
+        fs::{self, File},
         io::Read,
         io::Write,
         path::{Path, PathBuf},
@@ -98,9 +98,12 @@ fn wait_for_next_snapshot(
 }
 
 fn farf_dir() -> PathBuf {
-    std::env::var("FARF_DIR")
-        .unwrap_or_else(|_| "farf".to_string())
-        .into()
+    let dir: String =
+        std::env::var("FARF_DIR")
+            .unwrap_or_else(|_| "farf".to_string())
+            .into();
+    fs::create_dir_all(dir.clone()).unwrap();
+    PathBuf::from(dir)
 }
 
 fn generate_account_paths(num_account_paths: usize) -> (Vec<TempDir>, Vec<PathBuf>) {
