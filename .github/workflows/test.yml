@@ -18,8 +18,6 @@ jobs:
       run: |
         source ci/rust-version.sh
         echo "RUST_STABLE=$rust_stable" | tee -a $GITHUB_ENV
-        source ci/solana-version.sh
-        echo "SOLANA_VERSION=$solana_version" | tee -a $GITHUB_ENV
 
     - if: runner.os == 'Linux'
       run: |
@@ -40,16 +38,9 @@ jobs:
           ~/.cargo/git
         key: cargo-build-${{ hashFiles('**/Cargo.lock') }}-${{ env.RUST_STABLE}}
 
-    - uses: actions/cache@v2
-      with:
-        path: |
-          ~/.cache
-        key: solana-${{ env.SOLANA_VERSION }}
-
     - name: Install dependencies
       run: |
         ./ci/install-build-deps.sh
-        echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
 
     - name: Start PostgreSQL database
       run: ./ci/start_postgres.sh
