@@ -11,16 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # - name: Set Limits
-    #   run: |
-    #     ulimit -a
-    #     sudo sed -i 's/soft nofile 65536/soft nofile 1048576/g' /etc/security/limits.conf
-    #     sudo sed -i 's/hard nofile 65536/hard nofile 1048576/g' /etc/security/limits.conf
-    #     #cat /etc/pam.d/common-session
-    #     #cat /etc/security/limits.conf
-    #     sudo prlimit --nofile=500000 --pid $$
-    #     ulimit -a
-    #     ulimit -n 500000
 
     - uses: actions/checkout@v2
 
@@ -36,8 +26,6 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y libudev-dev
   
-
-
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ env.RUST_STABLE }}
@@ -80,10 +68,3 @@ jobs:
 
     - name: Build
       run: ./ci/cargo-build-test.sh
-
-    - name: Upload programs
-      uses: actions/upload-artifact@v2
-      with:
-        name: solana-accountsdb-plugin-postgres
-        path: "target/deploy/*.so"
-        if-no-files-found: error
