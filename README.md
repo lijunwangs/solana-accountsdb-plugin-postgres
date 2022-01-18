@@ -1,3 +1,5 @@
+This repo is superseded by the official repo: https://github.com/solana-labs/solana-accountsdb-plugin-postgres. Please create issues/PRs against that directly.
+
 The `solana-accountsdb-plugin-postgres` crate implements a plugin storing
 account data to a PostgreSQL database to illustrate how a plugin can be
 developed to work with Solana validators using the [Plugin Framework](https://docs.solana.com/developing/plugins/accountsdb_plugin).
