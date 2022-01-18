@@ -220,10 +220,10 @@ fn test_postgres_plugin() {
     solana_logger::setup_with_default(RUST_LOG_FILTER);
 
     unsafe {
-        let mut filename = "libsolana_accountsdb_plugin_postgres.dylib";
-        if std::env::consts::OS == "macos" {
-            filename = "libsolana_accountsdb_plugin_postgres.dylib";
-        }
+        let filename = match std::env::consts::OS {
+            "macos" => "libsolana_accountsdb_plugin_postgres.dylib",
+            _ => "libsolana_accountsdb_plugin_postgres.so",
+        };
 
         let lib = Library::new(filename);
         if lib.is_err() {
